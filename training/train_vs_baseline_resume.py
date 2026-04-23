@@ -9,7 +9,7 @@ import soccer_twos
 from baseline_opponent import VsBaselineEnv, load_baseline
 
 NUM_ENVS_PER_WORKER = 2
-ROOT = "/home/hice1/lgianantonio3/scratch/soccertwos/soccer-twos-starter"
+ROOT = os.path.dirname(os.path.abspath(__file__))
 BASELINE_WEIGHTS = os.path.join(ROOT, "ceia_baseline_weights.pth")
 
 

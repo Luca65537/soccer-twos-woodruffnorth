@@ -3,7 +3,7 @@ import numpy as np
 import soccer_twos
 from baseline_opponent import VsBaselineEnv, load_baseline
 
-baseline = load_baseline("/home/hice1/lgianantonio3/scratch/soccertwos/soccer-twos-starter/ceia_baseline_weights.pth")
+baseline = load_baseline("./ceia_baseline_weights.pth")
 raw = soccer_twos.make(render=False)
 env = VsBaselineEnv(raw, baseline, match_steps=500)   # short for smoke
 print("obs:", env.observation_space.shape, "act:", env.action_space)
