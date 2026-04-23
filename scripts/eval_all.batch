@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH -J eval_all
+#SBATCH -N1 --ntasks-per-node=1 --cpus-per-task=4
+#SBATCH --mem=16G
+#SBATCH -t02:00:00
+#SBATCH -p coc-gpu
+#SBATCH -q coc-ice
+#SBATCH --gres=gpu:1
+#SBATCH --exclude=atl1-1-01-005-17-0,atl1-1-01-005-19-0
+#SBATCH -o logs/eval_all-%j.out
+#SBATCH -e logs/eval_all-%j.err
+
+cd ~/scratch/soccertwos/soccer-twos-starter
+source /usr/local/pace-apps/manual/packages/miniforge/24.3.0-0/etc/profile.d/conda.sh
+conda activate ~/scratch/envs/soccertwos
+
+echo "=== Evaluating agent_vanilla vs Random ==="
+python3 -u evaluate.py agent_vanilla
+echo ""
+
+echo "=== Evaluating agent_curriculum vs Random ==="
+python3 -u evaluate.py agent_curriculum
+echo ""
+
+echo "=== Evaluating agent_shaped vs Random ==="
+python3 -u evaluate.py agent_shaped
+echo ""
+
+echo "=== ALL EVALS DONE ==="

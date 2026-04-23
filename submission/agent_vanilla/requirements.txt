@@ -1,0 +1,3 @@
+torch
+numpy
+soccer_twos
